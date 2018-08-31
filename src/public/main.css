@@ -1,0 +1,87 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #F2F2F2;
+}
+
+/*Nav*/
+
+.navbar {
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    box-shadow: .5px .5px .5px .5px rgba(0, 0, 0, 0.2);
+}
+
+/*Modificamos el estilo de Container de bootstrap*/
+
+.container-custom {
+    margin-top: 2em;
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.container .col-md-1,
+.col-md-2,
+.col-md-5,
+.col-md-6,
+.col-md-7,
+.col-md-8,
+.col-md-9,
+.col-md-10,
+.col-md-11,
+.col-md-12 {
+    border: 1px solid #eee;
+
+    margin: 20px;
+    background-color: #fff;
+}
+
+.no-shadow {
+    box-shadow: none;
+}
+
+/*Estilos*/
+
+.top-row {
+    justify-content: space-between;
+}
+
+.partido-porcentaje {
+    width: 80%;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    height: 125px;
+}
+
+.partido-porcentaje-content {
+    display: flex;
+}
+
+.partido-img-container {
+    flex: 0.5;
+    width: 100%;
+    height: 100%;
+    padding: 10px 0;
+}
+
+.partido-img-container img {
+    width: 125px;
+    height: 95px;
+}
+
+.partido-info {
+    flex: 0.7;
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
