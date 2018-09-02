@@ -4,51 +4,77 @@
 
     const estadisticaContainer = $("#estadisticas")
     const primerLugarContainer = $("#primerLugarCont")
-
+    //Obtenemos los partidos
     const obtenerPartidos = async () => {
-        let data = await fetch(URL);
-        let partidos = await data.json();
-        let estadisticas = await obtenerEstadisticas();
-      
-        let mayorId = ''
-        let mayorVotos = 0
-        estadisticas.forEach(item =>{
-            if(mayorVotos <= item.total_votos){
-                mayorId = item.partidoId;
-                mayorVotos = item.total_votos;
-            }            
-        })
+        try {
+            let data = await fetch(URL);
+            let partidos = await data.json();
+            //Obtenemos las estadisticas
+            let estadisticas = await obtenerEstadisticas();
+            //Procedimiento para encontrar el candidato con más votos
+            let mayorId = ''
+            let mayorVotos = 0
+            estadisticas.forEach(item =>{
+                if(mayorVotos <= item.total_votos){
+                    mayorId = item.partidoId;
+                    mayorVotos = item.total_votos;
+                }            
+            })
 
-        let partidosOrdenado = partidos.filter( e=> e._id == mayorId);
-     
-      
-        primerLugarContainer.html('');
-        partidos.forEach(partido => {
-            estadisticas.forEach(estadistica =>{
+            let partidosOrdenado = partidos.filter( e=> e._id == mayorId);
+        
+            //Limpiamos el div que contendrá el primer lugar
+            primerLugarContainer.html('');
+            //Recorrimos los partidos
+            partidos.forEach(partido => {
+                //Recorremos las estadisticas
+                estadisticas.forEach(estadistica =>{
+                    //Utilizamos una función que dibuja las estadistícas
+                    //la cual se va a iterar y le pasamos los parametros de
+                    //un objeto de partido, de la estadística y el partido
+                    //con más votos
+                estadisticasUI(partido, estadistica, partidosOrdenado);
+            })
                 
-            estadisticasUI(partido, estadistica, partidosOrdenado);
-        })
-            
-        });
+            });
+        } catch (error) {
+            consnole.log(error)
+        }
+        
     }
-   
+    //Obtenemos todos los partidos
     const obtenerInfoCatalogo = async()=>{
-        let data = await fetch(URL);
-        let partidos = await data.json();
-        partidos.forEach(partido => {
-            catalogoCandidatos(partido);
-        });
+        try {
+            let data = await fetch(URL);
+            let partidos = await data.json();
+            partidos.forEach(partido => {
+                //Los dibujamos en el modal para hacer la votación
+                //iteramos la función pasandole un objeto de tipo partido
+                catalogoCandidatos(partido);
+            });
+        } catch (error) {
+            conosle.log(error)
+        }
+        
     }
-
+    //Función para obtener las estadísticas y retornarlas
     const obtenerEstadisticas = async ()=>{
-        let res = await fetch(URL2);
-        let estadisticas = await res.json();
-        return estadisticas;
+        try {
+            let res = await fetch(URL2);
+            let estadisticas = await res.json();
+            return estadisticas;
+        } catch (error) {
+            console.log(error);
+        }
+        
     }
 
-
+    //Esta función dibuja las estadisticas
     const estadisticasUI = async (partido, estadistica,mayor) => {
+        //Comprobamos que el div existe
         if (estadisticaContainer) {
+            //Comparamos el ID del partido, el ID de partido que contiene estadísticas
+            //y el ID del candidato con más votos e imprimos la información
             if(partido._id === estadistica.partidoId && mayor[0]._id === partido._id){
             let elementoHtml = `
         <div>
@@ -78,6 +104,7 @@
                 </div>
         `;
         primerLugarContainer.append(elementoHtml);
+        //Imprimimos todos los demás candidatos
         }else if(partido._id === estadistica.partidoId && mayor[0]._id !== partido._id){
             let elementoHtml = `
         <div>
@@ -112,7 +139,7 @@
 
 
     }
-
+    //Imprimimos el catalogo de candidatos
     const catalogoCandidatos = (partido) => {
         let catalogo = $("#catalogo_candidatos")
         if (catalogo) {
