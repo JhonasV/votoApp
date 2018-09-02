@@ -11,15 +11,26 @@ $(document).ready(() => {
             },
             body: JSON.stringify(datos)
         })
+        
 
         let res = await data.json();
         //Guardamos el DNI del votante en localStorage para utilizar más adelante
         localStorage.setItem('dni', res.dni);
         alerta(res.voto);
     }
+
+    const show_loader = () =>{
+        $("#loader").attr("style", "display:block;");
+    }
+    const hide_loader = ()=>{
+        $("#loader").attr("style", "display:none;");
+    }
     const votacion_form = $("#votacion_form");
+   
     //Al formulario hacer submit obtenemos con esta función
     votacion_form.on("submit", (e) => {
+         //Mostramos el loader
+        show_loader();
         //Prevenimos el comportamiento normal del formulario
         e.preventDefault();
         //Creamos un objeto con los datos del votante
@@ -37,6 +48,7 @@ $(document).ready(() => {
     const voto_candidato = $("#voto_candidato_form");
     //Obtenemos el formulario de la selección de candidatos
     voto_candidato.on('submit', async (e) => {
+        show_loader();
         e.preventDefault();
         //Obtenemos el DNI del votante que se guardó en localStorage anteriormente
         //en la función "agregarVotación"
@@ -101,6 +113,7 @@ $(document).ready(() => {
             //Error inesperado
             mensajeContenedor.append(error_inesperado)
         }
+        hide_loader();
     }
 
     const alertaVoto = (estado) => {
@@ -131,6 +144,7 @@ $(document).ready(() => {
             //Error inesperado
             mensajeContenedor.append(error_inesperado)
         }
+        hide_loader();
     }
     //Función para desactivar el formulario
     const desactivarFormulario = () => {
