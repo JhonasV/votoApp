@@ -4,8 +4,8 @@
   "description": "",
   "main": "main.js",
   "engines": {
-    "node":"8.9.3",
-    "npm":"6.1.0"
+    "node": "8.9.3",
+    "npm": "6.1.0"
   },
   "scripts": {
     "dev": "nodemon src/main.js",
