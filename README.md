@@ -1,12 +1,14 @@
 # votoApp
-Aplicación que simula un sistema de voto electrónico.
+<h3>Aplicación que simula un sistema de voto electrónico.</h3>
 
-Hecha con:
-MongoDB
-NodeJs
-ExpressJs
-jQuery
-//New
+<h5>Hecha con:</h5>
+<ul>
+  <li>MongoDB</li>
+  <li>ExpressJs</li>
+  <li>jQuery</li>
+</ul>
+
+<bold>DEMO:</bold>
+
 https://secure-beyond-75755.herokuapp.com/
-//Old
-https://frozen-retreat-72757.herokuapp.com
+
