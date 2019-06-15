@@ -115,7 +115,8 @@ $(document).ready(() => {
         }
         hide_loader();
     }
-
+    //Quitar
+    obtenerPartidos();
     const alertaVoto = (estado) => {
         let mensajeContenedor = $("#mensaje");
         $("#exampleModalCenter").modal('hide');

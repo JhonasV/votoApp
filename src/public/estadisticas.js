@@ -57,6 +57,8 @@
         }
         
     }
+    //quitar
+    obtenerInfoCatalogo();
     //Función para obtener las estadísticas y retornarlas
     const obtenerEstadisticas = async ()=>{
         try {
@@ -79,15 +81,16 @@
             let elementoHtml = `
         <div>
         <div class="partido-porcentaje">
-                
                     <div class="row">
+                    
                         <div class="col-sm-4">
+                        
                                 <div class="partido-img-container">
                                         <img src="${partido.avatar_candidato}" alt="avatar">
                                     </div>
                         </div>
                         <div class="col-sm-8">
-                                <div class="partido-info">
+                                <div style="text-align:center;" class="partido-info">
                                         <h5>${partido.nombre_partido}</h5>
                                         <h6>${partido.nombre_candidato}</h6>
                                     </div>
@@ -113,14 +116,15 @@
                     <div class="row">
                         <div class="col-sm-4">
                                 <div class="partido-img-container">
-                                        <img src="${partido.avatar_candidato}" alt="avatar">
+                                        <img  src="${partido.avatar_candidato}" alt="avatar">
                                     </div>
                         </div>
                         <div class="col-sm-8">
-                                <div class="partido-info">
+                                <div style="text-align:center;" class="partido-info">
                                         <h5>${partido.nombre_partido}</h5>
                                         <h6>${partido.nombre_candidato}</h6>
                                     </div>
+                                    
                         </div>
                     </div>
                     <div class="row">
@@ -130,6 +134,7 @@
                                       </div>
                         </div>
                     </div>
+                    
                 </div>
                 </div>
         `
@@ -139,6 +144,7 @@
 
 
     }
+    
     //Imprimimos el catalogo de candidatos
     const catalogoCandidatos = (partido) => {
         let catalogo = $("#catalogo_candidatos")
@@ -148,11 +154,12 @@
             let elementoHTML = `
     
         <div class="col-md-3">
+           
             <input type="radio" id="candidato-select-${partido._id}" value="${partido._id}" name="candidato">
             <label for="candidato-select-${partido._id}">
-                <div class="card" style="height: 85%; width: 90%">
-                    <div class="card-body">
-                            <img style="width: 100%; height: 100%;" src="${partido.avatar_candidato}" alt="avatar">
+                <div class="card" style="height: 80%; width: auto%;">
+                    <div style="width:100%" class="card-body">
+                            <img style="width: 200px; height: 200px%;" src="${partido.avatar_candidato}" alt="avatar">
                     </div>
                     <div class="card-footer" style="height: auto;">
                             <h5>${partido.nombre_partido}</h5>
@@ -161,7 +168,7 @@
                 </div>
             </label>
         </div>
-                                   
+                   
        
         `;
             catalogo.append(elementoHTML);
